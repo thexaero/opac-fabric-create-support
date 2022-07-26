@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "opaccreatesupport",
+  "version": "${version}",
+
+  "name": "OPAC Create Mod Support",
+  "description": "An extension to the Open Parties and Claims mod that adds chunk protection support for the Create mod.",
+  "authors": [
+    "xaero96"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/opac-fabric-create-support",
+    "sources": "https://github.com/thexaero/opac-fabric-create-support"
+  },
+
+  "license": "GNU Lesser General Public License v3.0 (LGPL-3.0-only)",
+  "icon": "openpartiesandclaims_extension.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "xaero.pac.extension.fabric.create.CreateSupport"
+    ]
+  },
+  "mixins": [
+    "opaccreatesupport.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.13",
+    "minecraft": ">=1.18.2",
+    "java": ">=17",
+    "openpartiesandclaims": ">=0.8.0",
+    "create": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
