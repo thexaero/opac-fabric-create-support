@@ -42,7 +42,7 @@ dependencies {
 	modImplementation("dev.cafeteria:fake-player-api:${project.fake_player_api_version}")
 	modImplementation("io.github.tropheusj:milk-lib:${project.milk_lib_version}")
 
-	modImplementation "curse.maven:opac-636608:3905987"
+	//modImplementation "curse.maven:opac-636608:3905987"
 
 }
 

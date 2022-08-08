@@ -63,4 +63,12 @@ public class ServerCore {
 		return true;
 	}
 
+	public static boolean isCreateDeployerBlockInteractionAllowed(Level level, BlockPos anchor, BlockPos pos){
+		return true;
+	}
+
+	public static boolean isCreateTileDeployerBlockInteractionAllowed(BlockEntity tileEntity){
+		return true;
+	}
+
 }
