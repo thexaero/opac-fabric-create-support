@@ -43,7 +43,7 @@ public class MixinCreateSymmetryWandItem {
 
 	@Inject(method = "apply", remap = false, at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lcom/simibubi/create/content/curiosities/symmetry/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
 	private static void onApply(Level world, ItemStack wand, Player player, BlockPos pos, BlockState block, CallbackInfo ci){
-		onRemove(world, wand, player, pos, ci);
+		onRemove(world, wand, player, pos, block, ci);
 	}
 
 	@ModifyArg(method = "remove", remap = false, at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/curiosities/symmetry/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
@@ -53,7 +53,7 @@ public class MixinCreateSymmetryWandItem {
 	}
 
 	@Inject(method = "remove", remap = false, at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lcom/simibubi/create/content/curiosities/symmetry/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
-	private static void onRemove(Level world, ItemStack wand, Player player, BlockPos pos, CallbackInfo ci){
+	private static void onRemove(Level world, ItemStack wand, Player player, BlockPos pos, BlockState ogBlock, CallbackInfo ci){
 		ServerCore.onCreateModSymmetryProcessed(world, player);
 	}
 
