@@ -18,7 +18,9 @@
     "MixinCreateTileEntityConfigurationPacket",
     "MixinDeployerMovementBehaviour",
     "MixinDeployerTileEntity",
-    "MixinSimplePacketBaseContext"
+    "MixinSimplePacketBaseContext",
+    "MixinSuperGlueRemovalPacket",
+    "MixinSuperGlueSelectionPacket"
   ],
   "client": [
   ],

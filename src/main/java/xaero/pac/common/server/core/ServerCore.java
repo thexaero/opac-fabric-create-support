@@ -71,4 +71,18 @@ public class ServerCore {
 		return true;
 	}
 
+	public static boolean isCreateGlueSelectionAllowed(BlockPos from, BlockPos to, ServerPlayer player) {
+		return true;
+	}
+
+	public static boolean isCreateGlueRemovalAllowed(int entityId, ServerPlayer player) {
+		return true;
+	}
+
+	public static void preCreateDisassembleSuperGlue(Level level, BlockPos anchor){
+	}
+
+	public static void postCreateDisassembleSuperGlue(){
+	}
+
 }

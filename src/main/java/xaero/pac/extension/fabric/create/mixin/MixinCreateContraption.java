@@ -29,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xaero.pac.common.server.core.ServerCore;
 
@@ -53,6 +54,16 @@ public class MixinCreateContraption {
 	@ModifyVariable(method = "addBlocksToWorld", name = "blockState", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"))
 	public BlockState onAddBlocksToWorld(BlockState actual, Level level, StructureTransform structureTransform){
 		return ServerCore.replaceBlockFetchOnCreateModBreak(actual, level, anchor);
+	}
+
+	@Inject(method = "addBlocksToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"))
+	public void preAddSuperGlueToWorld(Level level, StructureTransform structureTransform, CallbackInfo ci){
+		ServerCore.preCreateDisassembleSuperGlue(level, anchor);
+	}
+
+	@Inject(method = "addBlocksToWorld", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"))
+	public void postAddSuperGlueToWorld(Level level, StructureTransform structureTransform, CallbackInfo ci){
+		ServerCore.postCreateDisassembleSuperGlue();
 	}
 
 }
