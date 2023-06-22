@@ -1,6 +1,6 @@
 /*
  * Open Parties and Claims Create Support - adds Create mod support to OPAC
- * Copyright (C) 2023, Xaero <xaero1996@gmail.com> and contributors
+ * Copyright (C) 2023-2023, Xaero <xaero1996@gmail.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of version 3 of the GNU Lesser General Public License
