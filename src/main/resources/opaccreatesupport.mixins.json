@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinAccessorDeployerFakePlayer",
+    "MixinContraptionInteractionPacket",
+    "MixinControlsInputPacket",
     "MixinCreateArmInteractionPoint",
     "MixinCreateArmTileEntity",
     "MixinCreateBlockBreakingKineticTileEntity",
@@ -18,9 +20,9 @@
     "MixinCreateTileEntityConfigurationPacket",
     "MixinDeployerMovementBehaviour",
     "MixinDeployerTileEntity",
-    "MixinSimplePacketBaseContext",
     "MixinSuperGlueRemovalPacket",
-    "MixinSuperGlueSelectionPacket"
+    "MixinSuperGlueSelectionPacket",
+    "MixinTrainRelocationPacket"
   ],
   "client": [
   ],

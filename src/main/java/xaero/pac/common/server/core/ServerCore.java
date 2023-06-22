@@ -20,6 +20,7 @@ package xaero.pac.common.server.core;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -59,7 +60,19 @@ public class ServerCore {
 		return true;
 	}
 
-	public static boolean isCreateTileEntityPacketAllowed(BlockEntity tileEntity, ServerPlayer player){
+	public static boolean isCreateTileEntityPacketAllowed(BlockPos pos, ServerPlayer player){
+		return true;
+	}
+
+	public static boolean isCreateContraptionInteractionPacketAllowed(int contraptionId, InteractionHand interactionHand, ServerPlayer player){
+		return true;
+	}
+
+	public static boolean isCreateTrainRelocationPacketAllowed(int contraptionId, BlockPos pos, ServerPlayer player) {
+		return true;
+	}
+
+	public static boolean isCreateTrainControlsPacketAllowed(int contraptionId, ServerPlayer player) {
 		return true;
 	}
 

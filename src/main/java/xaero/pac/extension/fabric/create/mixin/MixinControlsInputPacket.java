@@ -1,6 +1,6 @@
 /*
  * Open Parties and Claims Create Support - adds Create mod support to OPAC
- * Copyright (C) 2022, Xaero <xaero1996@gmail.com> and contributors
+ * Copyright (C) 2023, Xaero <xaero1996@gmail.com> and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of version 3 of the GNU Lesser General Public License
@@ -18,28 +18,29 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
+import com.simibubi.create.content.contraptions.components.structureMovement.interaction.controls.ControlsInputPacket;
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import xaero.pac.extension.fabric.create.accessor.ISimplePacketBaseContext;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xaero.pac.common.server.core.ServerCore;
 
-@Mixin(SimplePacketBase.Context.class)
-public class MixinSimplePacketBaseContext implements ISimplePacketBaseContext {
+@Mixin(ControlsInputPacket.class)
+public class MixinControlsInputPacket {
 
-	private boolean senderCancelled;
+	@Shadow
+	private int contraptionEntityId;
 
-	@Override
-	public void cancelSender(){
-		senderCancelled = true;
-	}
-
-	@Inject(method = "getSender", at = @At("HEAD"), cancellable = true)
-	public void onGetSender(CallbackInfoReturnable<ServerPlayer> cir){
-		if(senderCancelled)
-			cir.setReturnValue(null);
+	@Inject(method = "lambda$handle$0", remap = false, at = @At("HEAD"), cancellable = true)
+	public void onHandle(SimplePacketBase.Context context, CallbackInfo ci){
+		ServerPlayer player = context.getSender();
+		if (player == null)
+			return;
+		if(!ServerCore.isCreateTrainControlsPacketAllowed(contraptionEntityId, player))
+			ci.cancel();
 	}
 
 }
