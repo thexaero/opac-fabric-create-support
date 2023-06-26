@@ -18,7 +18,7 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.logistics.block.mechanicalArm.ArmInteractionPoint;
+import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPoint;
 import net.minecraft.core.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

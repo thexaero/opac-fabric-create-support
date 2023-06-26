@@ -19,7 +19,7 @@
 package xaero.pac.extension.fabric.create.mixin;
 
 import com.simibubi.create.content.schematics.SchematicPrinter;
-import com.simibubi.create.content.schematics.block.SchematicannonTileEntity;
+import com.simibubi.create.content.schematics.cannon.SchematicannonBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,8 +28,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xaero.pac.common.server.core.ServerCore;
 
-@Mixin(value = SchematicannonTileEntity.class, priority = 1000001)
-public class MixinCreateSchematicannonTileEntity {
+@Mixin(value = SchematicannonBlockEntity.class, priority = 1000001)
+public class MixinCreateSchematicannonBlockEntity {
 
 	@Shadow(remap = false)
 	public SchematicPrinter printer;

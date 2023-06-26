@@ -18,7 +18,7 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.curiosities.symmetry.SymmetryWandItem;
+import com.simibubi.create.content.equipment.symmetryWand.SymmetryWandItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -36,23 +36,23 @@ import java.util.Map;
 @Mixin(value = SymmetryWandItem.class, priority = 1000001)
 public class MixinCreateSymmetryWandItem {
 
-	@ModifyArg(method = "apply", remap = false, at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/curiosities/symmetry/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
+	@ModifyArg(method = "apply", remap = false, at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/equipment/symmetryWand/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
 	private static Map<BlockPos, BlockState> onApply(Map<BlockPos, BlockState> mapToCapture){
 		return onRemove(mapToCapture);
 	}
 
-	@Inject(method = "apply", remap = false, at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lcom/simibubi/create/content/curiosities/symmetry/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
+	@Inject(method = "apply", remap = false, at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lcom/simibubi/create/content/equipment/symmetryWand/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
 	private static void onApply(Level world, ItemStack wand, Player player, BlockPos pos, BlockState block, CallbackInfo ci){
 		onRemove(world, wand, player, pos, block, ci);
 	}
 
-	@ModifyArg(method = "remove", remap = false, at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/curiosities/symmetry/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
+	@ModifyArg(method = "remove", remap = false, at = @At(value = "INVOKE", target = "Lcom/simibubi/create/content/equipment/symmetryWand/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
 	private static Map<BlockPos, BlockState> onRemove(Map<BlockPos, BlockState> mapToCapture){
 		ServerCore.CAPTURED_POS_STATE_MAP = mapToCapture;
 		return mapToCapture;
 	}
 
-	@Inject(method = "remove", remap = false, at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lcom/simibubi/create/content/curiosities/symmetry/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
+	@Inject(method = "remove", remap = false, at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lcom/simibubi/create/content/equipment/symmetryWand/mirror/SymmetryMirror;process(Ljava/util/Map;)V"))
 	private static void onRemove(Level world, ItemStack wand, Player player, BlockPos pos, BlockState ogBlock, CallbackInfo ci){
 		ServerCore.onCreateModSymmetryProcessed(world, player);
 	}

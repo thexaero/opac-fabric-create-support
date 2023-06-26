@@ -18,9 +18,9 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.contraptions.components.deployer.DeployerFakePlayer;
-import com.simibubi.create.content.contraptions.components.deployer.DeployerMovementBehaviour;
-import com.simibubi.create.content.contraptions.components.structureMovement.MovementContext;
+import com.simibubi.create.content.contraptions.behaviour.MovementContext;
+import com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer;
+import com.simibubi.create.content.kinetics.deployer.DeployerMovementBehaviour;
 import net.minecraft.core.BlockPos;
 import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,7 +36,7 @@ public class MixinDeployerMovementBehaviour {
 	private MovementContext OPAC_lastMovementContext;
 	private BlockPos OPAC_lastPos;
 
-	@ModifyVariable(method = "tick", remap = false, at = @At(value = "INVOKE_ASSIGN", target = "Lcom/simibubi/create/content/contraptions/components/deployer/DeployerMovementBehaviour;getPlayer(Lcom/simibubi/create/content/contraptions/components/structureMovement/MovementContext;)Lcom/simibubi/create/content/contraptions/components/deployer/DeployerFakePlayer;"))
+	@ModifyVariable(method = "tick", remap = false, at = @At(value = "INVOKE_ASSIGN", target = "Lcom/simibubi/create/content/kinetics/deployer/DeployerMovementBehaviour;getPlayer(Lcom/simibubi/create/content/contraptions/behaviour/MovementContext;)Lcom/simibubi/create/content/kinetics/deployer/DeployerFakePlayer;"))
 	public DeployerFakePlayer onTick(DeployerFakePlayer deployerFakePlayer, MovementContext movementContext){
 		Pair<BlockPos, Float> blockBreakingProgress = ((MixinAccessorDeployerFakePlayer)deployerFakePlayer).getBlockBreakingProgress();
 		if(blockBreakingProgress != null) {

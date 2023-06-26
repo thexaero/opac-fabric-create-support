@@ -18,20 +18,29 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.contraptions.components.deployer.DeployerTileEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import com.simibubi.create.foundation.networking.BlockEntityConfigurationPacket;
+import com.simibubi.create.foundation.networking.SimplePacketBase;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xaero.pac.common.server.core.ServerCore;
 
-@Mixin(DeployerTileEntity.class)
-public class MixinDeployerTileEntity {
+@Mixin(BlockEntityConfigurationPacket.class)
+public class MixinCreateBlockEntityConfigurationPacket {
 
-	@Inject(method = "activate", remap = false, at = @At("HEAD"), cancellable = true)
-	public void onActivate(CallbackInfo ci){
-		if(!ServerCore.isCreateTileDeployerBlockInteractionAllowed((BlockEntity) (Object)this))
+	@Shadow
+	protected BlockPos pos;
+
+	@Inject(method = "lambda$handle$0", remap = false, at = @At("HEAD"), cancellable = true)
+	public void onHandle(SimplePacketBase.Context context, CallbackInfo ci){
+		ServerPlayer player = context.getSender();
+		if (player == null)
+			return;
+		if(!ServerCore.isCreateTileEntityPacketAllowed(pos, player))
 			ci.cancel();
 	}
 

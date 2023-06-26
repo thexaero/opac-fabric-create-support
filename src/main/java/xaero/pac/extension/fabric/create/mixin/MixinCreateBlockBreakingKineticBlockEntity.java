@@ -18,7 +18,7 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.contraptions.components.actors.BlockBreakingKineticTileEntity;
+import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,8 +28,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import xaero.pac.common.server.core.ServerCore;
 
-@Mixin(value = BlockBreakingKineticTileEntity.class, priority = 1000001)
-public class MixinCreateBlockBreakingKineticTileEntity extends MixinCreateKineticTileEntity {
+@Mixin(value = BlockBreakingKineticBlockEntity.class, priority = 1000001)
+public class MixinCreateBlockBreakingKineticBlockEntity extends MixinCreateKineticBlockEntity {
 
 	@ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"))
 	public BlockPos onTick(BlockPos posToCapture){

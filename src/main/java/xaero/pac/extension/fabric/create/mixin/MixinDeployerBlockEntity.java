@@ -18,15 +18,21 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.contraptions.base.KineticTileEntity;
-import net.minecraft.core.BlockPos;
+import com.simibubi.create.content.kinetics.deployer.DeployerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import xaero.pac.common.server.core.ServerCore;
 
-@Mixin(value = KineticTileEntity.class, priority = 1000001)
-public class MixinCreateKineticTileEntity {
+@Mixin(DeployerBlockEntity.class)
+public class MixinDeployerBlockEntity {
 
-	@Shadow
-	public BlockPos source;
+	@Inject(method = "activate", remap = false, at = @At("HEAD"), cancellable = true)
+	public void onActivate(CallbackInfo ci){
+		if(!ServerCore.isCreateTileDeployerBlockInteractionAllowed((BlockEntity) (Object)this))
+			ci.cancel();
+	}
 
 }

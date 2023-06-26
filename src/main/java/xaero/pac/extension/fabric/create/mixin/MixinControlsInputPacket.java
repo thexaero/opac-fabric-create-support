@@ -18,7 +18,7 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.contraptions.components.structureMovement.interaction.controls.ControlsInputPacket;
+import com.simibubi.create.content.contraptions.actors.trainControls.ControlsInputPacket;
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;

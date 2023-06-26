@@ -18,7 +18,7 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.logistics.trains.entity.TrainRelocationPacket;
+import com.simibubi.create.content.trains.entity.TrainRelocationPacket;
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

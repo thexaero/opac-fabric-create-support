@@ -18,8 +18,8 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.logistics.block.mechanicalArm.ArmInteractionPoint;
-import com.simibubi.create.content.logistics.block.mechanicalArm.ArmTileEntity;
+import com.simibubi.create.content.kinetics.mechanicalArm.ArmBlockEntity;
+import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPoint;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -31,8 +31,8 @@ import xaero.pac.common.server.core.accessor.ICreateArmInteractionPoint;
 
 import java.util.List;
 
-@Mixin(ArmTileEntity.class)
-public class MixinCreateArmTileEntity {
+@Mixin(ArmBlockEntity.class)
+public class MixinCreateArmBlockEntity {
 
 	@Shadow(remap = false)
 	private List<ArmInteractionPoint> inputs;

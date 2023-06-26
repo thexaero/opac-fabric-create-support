@@ -18,7 +18,7 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
-import com.simibubi.create.content.contraptions.components.structureMovement.glue.SuperGlueRemovalPacket;
+import com.simibubi.create.content.contraptions.glue.SuperGlueRemovalPacket;
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
