@@ -20,8 +20,11 @@
     "MixinCreateSymmetryWandItem",
     "MixinDeployerBlockEntity",
     "MixinDeployerMovementBehaviour",
+    "MixinPotatoProjectileEntity",
     "MixinSuperGlueRemovalPacket",
     "MixinSuperGlueSelectionPacket",
+    "MixinToolboxDisposeAllPacket",
+    "MixinToolboxEquipPacket",
     "MixinTrainRelocationPacket"
   ],
   "client": [

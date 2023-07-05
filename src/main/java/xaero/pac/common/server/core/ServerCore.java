@@ -23,9 +23,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.EntityHitResult;
 import xaero.pac.common.server.core.accessor.ICreateArmInteractionPoint;
 
 import java.util.List;
@@ -89,6 +91,10 @@ public class ServerCore {
 	}
 
 	public static boolean isCreateGlueRemovalAllowed(int entityId, ServerPlayer player) {
+		return true;
+	}
+
+	public static boolean isProjectileHitAllowed(Projectile entity, EntityHitResult hitResult){
 		return true;
 	}
 
