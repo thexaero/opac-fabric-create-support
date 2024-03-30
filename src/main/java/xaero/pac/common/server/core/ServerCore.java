@@ -104,4 +104,8 @@ public class ServerCore {
 	public static void postCreateDisassembleSuperGlue(){
 	}
 
+	public static boolean canCreatePipeAffectBlock(Level level, BlockPos from, BlockPos to, boolean simulate){
+		return true;
+	}
+
 }

@@ -20,6 +20,7 @@
     "MixinCreateSymmetryWandItem",
     "MixinDeployerBlockEntity",
     "MixinDeployerMovementBehaviour",
+    "MixinOpenEndedPipe",
     "MixinPotatoProjectileEntity",
     "MixinSuperGlueRemovalPacket",
     "MixinSuperGlueSelectionPacket",
