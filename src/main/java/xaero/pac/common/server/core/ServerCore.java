@@ -108,4 +108,8 @@ public class ServerCore {
 		return true;
 	}
 
+	public static boolean canCreatePloughPos(Level level, BlockPos anchor, BlockPos pos){
+		return true;
+	}
+
 }

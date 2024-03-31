@@ -21,6 +21,7 @@
     "MixinDeployerBlockEntity",
     "MixinDeployerMovementBehaviour",
     "MixinOpenEndedPipe",
+    "MixinPloughMovementBehaviour",
     "MixinPotatoProjectileEntity",
     "MixinSuperGlueRemovalPacket",
     "MixinSuperGlueSelectionPacket",
