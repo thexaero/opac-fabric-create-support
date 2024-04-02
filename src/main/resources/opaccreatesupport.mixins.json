@@ -4,6 +4,7 @@
   "package": "xaero.pac.extension.fabric.create.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "MixinAbstractContraptionEntity",
     "MixinAccessorDeployerFakePlayer",
     "MixinContraptionInteractionPacket",
     "MixinControlsInputPacket",
@@ -20,6 +21,7 @@
     "MixinCreateSymmetryWandItem",
     "MixinDeployerBlockEntity",
     "MixinDeployerMovementBehaviour",
+    "MixinMinecartContraptionItem",
     "MixinOpenEndedPipe",
     "MixinPloughMovementBehaviour",
     "MixinPotatoProjectileEntity",

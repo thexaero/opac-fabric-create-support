@@ -32,16 +32,18 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xaero.pac.common.server.core.ServerCore;
+import xaero.pac.common.server.core.accessor.ICreateContraption;
 
 @Mixin(value = Contraption.class, priority = 1000001)
-public class MixinCreateContraption {
+public class MixinCreateContraption implements ICreateContraption {
 
 	@Shadow
 	public BlockPos anchor;
+	private BlockPos xaero_OPAC_placementPos;
 
 	@Inject(method = "movementAllowed", at = @At("HEAD"), cancellable = true)
 	public void onMovementAllowed(BlockState state, Level level, BlockPos pos, CallbackInfoReturnable<Boolean> cir){
-		if(!ServerCore.isCreateModAllowed(level, pos, anchor))
+		if(!ServerCore.isCreateModAllowed(level, pos, this))
 			cir.setReturnValue(false);
 	}
 
@@ -53,12 +55,12 @@ public class MixinCreateContraption {
 
 	@ModifyVariable(method = "addBlocksToWorld", name = "blockState", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"))
 	public BlockState onAddBlocksToWorld(BlockState actual, Level level, StructureTransform structureTransform){
-		return ServerCore.replaceBlockFetchOnCreateModBreak(actual, level, anchor);
+		return ServerCore.replaceBlockFetchOnCreateModBreak(actual, level, this);
 	}
 
 	@Inject(method = "addBlocksToWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"))
 	public void preAddSuperGlueToWorld(Level level, StructureTransform structureTransform, CallbackInfo ci){
-		ServerCore.preCreateDisassembleSuperGlue(level, anchor);
+		ServerCore.preCreateDisassembleSuperGlue(level, this);
 	}
 
 	@Inject(method = "addBlocksToWorld", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"))
@@ -66,4 +68,18 @@ public class MixinCreateContraption {
 		ServerCore.postCreateDisassembleSuperGlue();
 	}
 
+	@Override
+	public BlockPos getXaero_OPAC_anchor() {
+		return anchor;
+	}
+
+	@Override
+	public BlockPos getXaero_OPAC_placementPos() {
+		return xaero_OPAC_placementPos;
+	}
+
+	@Override
+	public void setXaero_OPAC_placementPos(BlockPos pos) {
+		xaero_OPAC_placementPos = pos;
+	}
 }

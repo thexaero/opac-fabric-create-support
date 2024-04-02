@@ -29,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xaero.pac.common.server.core.ServerCore;
+import xaero.pac.common.server.core.accessor.ICreateContraption;
 
 @Mixin(DeployerMovementBehaviour.class)
 public class MixinDeployerMovementBehaviour {
@@ -54,7 +55,7 @@ public class MixinDeployerMovementBehaviour {
 
 	@Inject(method = "activate", remap = false, at = @At("HEAD"), cancellable = true)
 	public void onActivate(CallbackInfo ci){
-		if(OPAC_lastPos == null || !ServerCore.isCreateDeployerBlockInteractionAllowed(OPAC_lastMovementContext.world, OPAC_lastMovementContext.contraption.anchor, OPAC_lastPos))
+		if(OPAC_lastPos == null || !ServerCore.isCreateDeployerBlockInteractionAllowed(OPAC_lastMovementContext.world, (ICreateContraption) OPAC_lastMovementContext.contraption, OPAC_lastPos))
 			ci.cancel();
 	}
 

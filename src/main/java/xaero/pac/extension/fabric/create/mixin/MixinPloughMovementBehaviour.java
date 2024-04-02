@@ -26,13 +26,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xaero.pac.common.server.core.ServerCore;
+import xaero.pac.common.server.core.accessor.ICreateContraption;
 
 @Mixin(PloughMovementBehaviour.class)
 public class MixinPloughMovementBehaviour {
 
 	@Inject(method = "visitNewPosition", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;useOn(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;"), cancellable = true)
 	public void onVisitNewPosition(MovementContext context, BlockPos pos, CallbackInfo ci){
-		if(!ServerCore.canCreatePloughPos(context.world, context.contraption.anchor, pos))
+		if(!ServerCore.canCreatePloughPos(context.world, (ICreateContraption) context.contraption, pos))
 			ci.cancel();
 	}
 

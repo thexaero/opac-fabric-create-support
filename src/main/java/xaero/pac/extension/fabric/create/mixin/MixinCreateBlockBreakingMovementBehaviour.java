@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import xaero.pac.common.server.core.ServerCore;
+import xaero.pac.common.server.core.accessor.ICreateContraption;
 
 @Mixin(value = BlockBreakingMovementBehaviour.class, priority = 1000001)
 public class MixinCreateBlockBreakingMovementBehaviour {
@@ -39,7 +40,7 @@ public class MixinCreateBlockBreakingMovementBehaviour {
 
 	@ModifyVariable(method = "tickBreaker", name = "stateToBreak", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"))
 	public BlockState onTickBreaker(BlockState actual, MovementContext movementContext){
-		return ServerCore.replaceBlockFetchOnCreateModBreak(actual, movementContext.world, movementContext.contraption.anchor);
+		return ServerCore.replaceBlockFetchOnCreateModBreak(actual, movementContext.world, (ICreateContraption) movementContext.contraption);
 	}
 
 }

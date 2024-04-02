@@ -26,6 +26,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import xaero.pac.common.server.core.ServerCore;
+import xaero.pac.common.server.core.accessor.ICreateContraption;
 
 @Mixin(value = HarvesterMovementBehaviour.class, priority = 1000001)
 public class MixinCreateHarvesterMovementBehaviour {
@@ -33,7 +34,7 @@ public class MixinCreateHarvesterMovementBehaviour {
 	@ModifyVariable(method = "visitNewPosition", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;"))
 	public BlockState onVisitNewPosition(BlockState actual, MovementContext movementContext, BlockPos pos){
 		ServerCore.CAPTURED_TARGET_POS = pos;
-		return ServerCore.replaceBlockFetchOnCreateModBreak(actual, movementContext.world, movementContext.contraption.anchor);
+		return ServerCore.replaceBlockFetchOnCreateModBreak(actual, movementContext.world, (ICreateContraption) movementContext.contraption);
 	}
 
 }
