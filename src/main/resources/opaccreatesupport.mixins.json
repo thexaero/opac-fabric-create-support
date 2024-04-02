@@ -8,6 +8,7 @@
     "MixinAccessorDeployerFakePlayer",
     "MixinContraptionInteractionPacket",
     "MixinControlsInputPacket",
+    "MixinCouplingHandler",
     "MixinCreateArmBlockEntity",
     "MixinCreateArmInteractionPoint",
     "MixinCreateBlockBreakingKineticBlockEntity",

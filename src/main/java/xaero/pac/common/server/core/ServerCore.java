@@ -124,4 +124,8 @@ public class ServerCore {
 	public static void postMinecartContraptionPlaced(){
 	}
 
+	public static boolean canCreateAddCoupling(Player player, Level world, int cartId1, int cartId2){
+		return true;
+	}
+
 }
