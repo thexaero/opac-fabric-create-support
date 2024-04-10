@@ -12,9 +12,9 @@ group = project.maven_group
 
 repositories {
 	maven { url = "https://api.modrinth.com/maven" } // LazyDFU, Suggestion Tweaker
-	maven { url = "https://mvn.devos.one/snapshots/" } // Create, Porting Lib, Forge Tags, Milk Lib
+	maven { url = "https://mvn.devos.one/snapshots/" } // Registrate, Create, Porting Lib, Forge Tags, Milk Lib
 	maven { url = "https://cursemaven.com" } // Forge Config API Port
-	maven { url = "https://maven.tterrag.com/" } // Registrate and Flywheel
+	maven { url = "https://maven.tterrag.com/" } // Flywheel
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
 	maven { url = "https://jitpack.io/" } // Mixin Extras, fabric ASM
 }
@@ -31,12 +31,14 @@ dependencies {
 
 	implementation 'com.electronwill.night-config:core:3.6.3'
 	implementation 'com.electronwill.night-config:toml:3.6.3'
-	modImplementation "curse.maven:forgeconfigfabric-547434:3671141"//source: https://github.com/Fuzss/forgeconfigapiport-fabric
+	modImplementation "curse.maven:forgeconfigfabric-547434:3943250"//source: https://github.com/Fuzss/forgeconfigapiport-fabric
 	modImplementation("com.simibubi.create:create-fabric-${project.minecraft_version}:${project.create_version}") { transitive = false }
 	modImplementation("io.github.fabricators_of_create:Porting-Lib:$project.port_lib_version+$project.minecraft_version")
 	modImplementation("me.alphamode:ForgeTags:${project.forge_tags_version}")
-	modImplementation("com.tterrag.registrate:Registrate:${project.registrate_version}")
-	modImplementation("com.jozufozu.flywheel:flywheel-fabric-${flywheel_minecraft_version}:${project.flywheel_version}")
+	modImplementation("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"){
+		exclude(group: "io.github.fabricators_of_create")//porting lib duplicate
+	}
+	modImplementation("com.jozufozu.flywheel:flywheel-fabric-${project.flywheel_minecraft_version}:${project.flywheel_version}")
 	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 	modImplementation("io.github.tropheusj:milk-lib:${project.milk_lib_version}")
 
