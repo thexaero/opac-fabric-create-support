@@ -33,7 +33,11 @@ dependencies {
 	implementation 'com.electronwill.night-config:toml:3.6.3'
 	modImplementation "curse.maven:forgeconfigfabric-547434:3943250"//source: https://github.com/Fuzss/forgeconfigapiport-fabric
 	modImplementation("com.simibubi.create:create-fabric-${project.minecraft_version}:${project.create_version}") { transitive = false }
-	modImplementation("io.github.fabricators_of_create:Porting-Lib:$project.port_lib_version+$project.minecraft_version")
+
+	for (String module in port_lib_modules.split(",")) {
+		modImplementation("io.github.fabricators_of_create.Porting-Lib:$module:$port_lib_version")
+	}
+
 	modImplementation("me.alphamode:ForgeTags:${project.forge_tags_version}")
 	modImplementation("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"){
 		exclude(group: "io.github.fabricators_of_create")//porting lib duplicate
