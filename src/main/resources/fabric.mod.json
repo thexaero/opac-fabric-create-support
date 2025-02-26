@@ -30,7 +30,7 @@
     "fabricloader": ">=0.13",
     "minecraft": ">=1.20",
     "java": ">=17",
-    "openpartiesandclaims": ">=0.21.1",
+    "openpartiesandclaims": ">=0.24.0",
     "create": "*"
   },
   "suggests": {

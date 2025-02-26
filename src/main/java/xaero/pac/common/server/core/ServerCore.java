@@ -72,7 +72,11 @@ public class ServerCore {
 		return true;
 	}
 
-	public static boolean isCreateContraptionInteractionPacketAllowed(int contraptionId, InteractionHand interactionHand, ServerPlayer player){
+	public static boolean isCreateContraptionInteractionPacketAllowed(int contraptionId, InteractionHand interactionHand, BlockPos localPos, ServerPlayer player){
+		return true;
+	}
+
+	public static boolean isCreateContraptionControlsPacketAllowed(int contraptionId, ServerPlayer player){
 		return true;
 	}
 
