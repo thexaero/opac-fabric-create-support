@@ -18,6 +18,7 @@
 
 package xaero.pac.extension.fabric.create.mixin;
 
+import com.simibubi.create.content.contraptions.elevator.ElevatorTargetFloorPacket;
 import com.simibubi.create.content.contraptions.sync.ContraptionInteractionPacket;
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import net.minecraft.core.BlockPos;
@@ -30,24 +31,18 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xaero.pac.common.server.core.ServerCore;
 
-@Mixin(ContraptionInteractionPacket.class)
-public class MixinContraptionInteractionPacket {
+@Mixin(ElevatorTargetFloorPacket.class)
+public class MixinElevatorTargetFloorPacket {
 
 	@Shadow
-	private InteractionHand interactionHand;
-
-	@Shadow
-	private int target;
-
-	@Shadow
-	private BlockPos localPos;
+	private int entityId;
 
 	@Inject(method = "lambda$handle$0", remap = false, at = @At("HEAD"), cancellable = true)
 	public void onHandle(SimplePacketBase.Context context, CallbackInfo ci){
 		ServerPlayer player = context.getSender();
 		if (player == null)
 			return;
-		if(!ServerCore.isCreateContraptionInteractionPacketAllowed(target, interactionHand, localPos, player))
+		if(!ServerCore.isCreateContraptionControlsPacketAllowed(entityId, player))
 			ci.cancel();
 	}
 
